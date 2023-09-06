@@ -1,0 +1,57 @@
+# accept a list of values, and another value n, then return a new list with every value multiplied by n.
+def mul_by_n(lst, n):
+    print("Inputs: ", lst, n)
+    result = [ x * n for x in lst ]
+    print("Result: ", result)
+    return result
+
+# Given a point in a Euclidean plane (x and y), return the quadrant the point exists in: 1, 2, 3 or 4 (integer).
+def quadrant(x, y):
+    if x >= 0:
+        if y >= 0:
+            return 1
+        else: return 4
+    elif x<0:
+        if y < 0:
+            return 3
+        else: return 2
+
+# Given a month as an integer from 1 to 12, return to which quarter of the year it belongs as an integer number.
+def quarter_of(month):
+    if month in range(1, 4):
+        return 1
+    elif month in range(4, 7):
+        return 2
+    elif month in range(7, 10):
+        return 3
+    elif month in range(10, 13):
+        return 4
+
+# Given 2 elevators (named "left" and "right") in a building with 3 floors (numbered 0 to 2), write a function elevator accepting 3 arguments (in order): left, right, call
+def elevator(left, right, call):
+    return "left" if abs(call - left) < abs(call - right) else "right"
+
+# Create a function finalGrade, which calculates the final grade of a student depending on two parameters: a grade for the exam and a number of completed projects.
+def final_grade(exam, projects):
+  if exam > 90 or  projects > 10: return 100
+  if exam > 75 and projects >= 5: return 90
+  if exam > 50 and projects >= 2: return 75
+  return 0
+
+# Write a function feast that takes the animal's name and dish as arguments and returns true or false to indicate whether the beast is allowed to bring the dish to the feast.
+def feast(beast, dish):
+    return beast[0]==dish[0] and dish[-1]==beast[-1]
+
+# Given a year, return the century it is in.
+def century(year):
+    return (year + 99) // 100
+
+# get the sum of two arrays
+def array_plus_array(arr1,arr2):
+    return sum(arr1+arr2)
+
+# Build a function that returns an array of integers from n to 1 where n>0.
+def reverseseq(n):
+    return list(range(n, 0, -1))
+
+
