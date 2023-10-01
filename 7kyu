@@ -2,3 +2,18 @@
 
 def minimum(a, x):
     return min(a % x, abs((a % x) - x))
+
+# Given a list of integers, find the positive difference between each consecutive pair of numbers, and put this into a new list of differences. Then, find the differences between consecutive pairs in this new list, and repeat until the list has a length of 1. Then, return the single value.
+
+def differences(lst):
+    i = 0
+    res = []
+    for i in range(len(lst)):
+        while i < len(lst) - 1:
+            x = abs(lst[i] - lst[i+1])
+            i += 1
+            res.append(x)
+        if len(res) == 1:
+            break
+    return res[0]
+
