@@ -3,6 +3,7 @@
 def minimum(a, x):
     return min(a % x, abs((a % x) - x))
 
+
 # Given a list of integers, find the positive difference between each consecutive pair of numbers, and put this into a new list of differences. Then, find the differences between consecutive pairs in this new list, and repeat until the list has a length of 1. Then, return the single value.
 
 def differences(lst):
@@ -16,4 +17,70 @@ def differences(lst):
         if len(res) == 1:
             break
     return res[0]
+
+
+# Given 3 lists of the same length like these: products: ["Computer", "Cell Phones", "Vacuum Cleaner"] amounts: [3, 24, 8] prices: [199, 299, 399] return the three product names with the highest revenue (amount * price).
+
+def top3(products, amounts, prices):
+    res = []
+    for i in range(len(products)):
+        x = amounts[i] * prices[i]
+        res.append(x)
+    merged = sorted(zip(res, products), reverse=True)
+    return [x[1] for x in merged[0:3]] 
+
+
+# Given an array (or list or vector) of arrays (or, guess what, lists or vectors) of integers, your goal is to return the sum of a specific set of numbers, starting with elements whose position is equal to the main array length and going down by one at each step.
+
+def elements_sum(arr):
+    j = len(arr)
+    res = []
+    for i in range(len(arr)):
+        x = arr[i][j - 1]
+        i += 1
+        j -= 1
+        res.append(x)
+    return sum(res)
+
+
+# Given an array/list [] of n integers , find maximum triplet sum in the array Without duplications.
+
+def max_tri_sum(numbers):
+    numbers = set(numbers)
+    numbers = sorted(numbers, reverse=True)
+    return sum(numbers[:3])
+
+
+# Given an array with exactly 5 strings "a", "b" or "c", check if the array contains three and two of the same values.
+
+def check_three_and_two(arr):
+    count_a = arr.count('a')
+    count_b = arr.count('b')
+    count_c = arr.count('c')
+
+    if (count_a == 3 and (count_b == 2 or count_c == 2)) or (count_b == 3 and (count_a == 2 or count_c == 2)) or (count_c == 3 and (count_a == 2 or count_b == 2)):
+        return True
+    else:
+        return False
+
+
+# You get a list of integers. Return a new list by adding each consecutive pair of the list.
+
+def make_new_list(arr):
+    return [x + y for x, y in zip(arr, arr[1:])]
+
+
+# Determine if any of the numbers in the array is the index of the "odd" word. If so, return true, otherwise false.
+
+def odd_ball(arr):
+    odd_index = arr.index('odd')
+    if odd_index in arr:
+        return True
+    else:
+        return False
+
+
+
+
+
 
