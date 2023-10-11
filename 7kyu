@@ -127,8 +127,52 @@ def alphabetic(s):
         return False
 
 
+def odd_ones_out(numbers):
+    res = []
+    for x in numbers:
+        if numbers.count(x) % 2 == 0:
+            res.append(x)
+    return res
 
 
+# Your task is very simple. Given an input string s, case_sensitive(s), check whether all letters are lowercase or not. Return True/False and a list of all the entries that are not lowercase in order of their appearance in s.
+
+def case_sensitive(s):
+    if s == s.islower():
+        return [True, []]
+    else:
+        res = []
+        for letter in s:
+            if letter.isupper():
+                res.append(letter)
+        if res:
+            return [False, res]
+        else:
+            return [True, []]
+
+
+# You're supplied with an array of numbers, and should return an array with each page number that is out of place. Incorrect page numbers may appear next to each other. Duplicate incorrect page numbers are possible.
+
+def find_page_number(pages):
+    res = []
+    for number in range(len(pages) - 1):
+        if (pages[number] != pages[number + 1]) or (pages[number] != pages[number + 1] - 1):
+            res.append(pages[number])
+    return res
+
+
+# Given a sequence of integers, return the sum of all the integers that have an even index, multiplied by the integer at the last index. Indices in sequence start from 0.
+
+def even_last(numbers):
+    if numbers == []:
+        return 0
+    
+    last_integer = numbers[-1]
+    even = []
+    for i in range(len(numbers)):
+        if i % 2 == 0:
+            even.append(numbers[i])
+    return sum(even) * last_integer
 
 
 
