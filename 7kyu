@@ -175,5 +175,21 @@ def even_last(numbers):
     return sum(even) * last_integer
 
 
+# Return an array/list where Even numbers come first then odds. Even numbers in ascending order While odds in descending.
+
+def men_from_boys(arr):
+    odd = []
+    even = []
+    for num in arr:
+        if num % 2 == 0:
+            odd.append(num)
+        if num % 2 == 1:
+            even.append(num)
+    even = sorted(set(even), reverse=True)
+    odd = sorted(set(odd))
+    result = odd + even
+    return result
+
+
 
 
