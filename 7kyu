@@ -239,4 +239,33 @@ def nth_smallest(arr, pos):
     return arr[pos - 1]
 
 
+# Given an array of numbers, return a new array of length number containing the last even numbers from the original array (in the same order).
+
+def even_numbers(arr,n):
+    arr = reversed(arr)
+    even = [x for x in arr if x % 2 == 0]
+    return even[:n][::-1]
+
+
+# your task will be to return the count of pairs that have consecutive numbers as follows:
+
+def pairs(arr):
+    count = 0
+    for num in range(len(arr) - 1):
+        if abs(arr[num] - arr[num + 1]) == 1:
+            count += 1
+    return count
+
+
+# you will be given a number, two indexes (index1 and index2) and a digit to look for. Your task will be to check if the digit exists in the number, within the indexes given.
+
+def check_digit(number, index1, index2, digit):
+    number = [int(x) for x in str(number)]
+    portion = number[min(index1, index2): max(index1, index2) + 1]
+    if int(digit) in portion:
+        return True
+    else:
+        return False
+
+
 
