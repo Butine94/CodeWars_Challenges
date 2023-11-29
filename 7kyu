@@ -268,4 +268,17 @@ def check_digit(number, index1, index2, digit):
         return False
 
 
+# A number is a Special Number if it’s digits only consist 0, 1, 2, 3, 4 or 5. Given a number determine if it special number or not .
+
+def special_number(number):
+    special_number = [0, 1, 2, 3, 4, 5]
+    number = [int(x) for x in str(number)]
+    for num in number:
+        if num not in special_number:
+            return "NOT!!"
+    return "Special!!"
+
+
+
+
 
