@@ -291,6 +291,20 @@ def solution(start, finish):
         return int(((distance - 2) / 3) + 2)
 
 
+# write a function that takes a string and a letter as input and then returns the index of the second occurrence of that letter in the string.
+
+def second_symbol(s, symbol):
+    if s.count(symbol) >= 2:
+        return s.find(symbol, s.find(symbol) + 1)
+    else:
+        return -1
+
+
+
+
+
+
+
 
 
 
