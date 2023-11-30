@@ -299,6 +299,19 @@ def second_symbol(s, symbol):
     else:
         return -1
 
+# Given a string, calculate how many times the words "Sand", "Water", "Fish", and "Sun" appear without overlapping.
+
+def sum_of_a_beach(beach):
+    words = ["sand", "water", "fish", "sun"]
+    beach = beach.lower().split()
+    count = 0
+    for word in beach:
+        if word in words:
+            count += 1
+    return count
+
+
+
 
 
 
