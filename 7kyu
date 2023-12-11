@@ -321,7 +321,14 @@ def repeats(arr):
     return sum(result)
 
 
+# Given an array of integers and an integer n, find all occurrences of n in the given array and return another array containing all the index positions of n in the given array.
 
+def find_all(array, n):
+    result = []
+    for index, num in enumerate(array):
+        if num == n:
+            result.append(index)
+    return result
 
 
 
