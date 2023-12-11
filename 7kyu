@@ -331,6 +331,30 @@ def find_all(array, n):
     return result
 
 
+# Remove the duplicates from a list of integers, keeping the last ( rightmost ) occurrence of each element.
+
+def solve(arr): 
+    arr = arr[::-1]
+    first_occ = []
+    for num in arr:
+        if num not in first_occ:
+            first_occ.append(num)
+    return first_occ[::-1]
+
+
+# Given an array representing a series of floors you must reach by elevator, return an integer representing the total distance travelled for visiting each floor in the array in order.
+
+def elevator_distance(array):
+    result = []
+    for num in range(len(array) - 1):
+        x = abs(array[num] - array[num + 1])
+        result.append(x)
+    return sum(result)
+
+
+
+
+
 
 
 
