@@ -372,6 +372,70 @@ def sum_no_duplicates(l):
     return sum(result)
 
 
+# Complete the function that takes a noun as a string, and returns her preferred band name written as a string.
+
+def band_name_generator(name):
+    if name[0] != name[-1]:
+        return f"The {name.capitalize()}"
+    else:
+        return f"{name.capitalize()}{name[1:]}"
+
+
+# write a function which calculates the value of a word based off the sum of the alphabet positions of its characters.
+
+def words_to_marks(s):
+    alphabet = '_abcdefghijklmnopqrstuvwxyz'
+    result = 0
+    for letter in s:
+        result += alphabet.index(letter)
+    return result
+
+
+# An ordered sequence of numbers from 1 to N is given. One number might have deleted from it, then the remaining numbers were mixed. Find the number that was deleted.
+
+def find_deleted_number(arr, mixed_arr):
+    sorted_arr = sorted(mixed_arr)
+    if sorted_arr == arr:
+        return 0
+    else:
+        for num in arr:
+            if num not in sorted_arr:
+                return num
+
+
+# Given an array of strings, "filterEvenLengthWords" returns an array containing only the elements of the given array whose length is an even number.
+
+def filter_even_length_words(words):
+    return [word for word in words if len(word) % 2 == 0]
+
+
+# Given a list of integers, determine whether the sum of its elements is odd or even.
+
+def odd_or_even(arr):
+    result = sum(arr)
+    return 'Even' if result % 2 == 0 else 'Odd'
+
+
+# Write a function that takes a string name as an argument and returns the first 3 or 4 letters as a nickname.
+
+def nickname_generator(name):
+    if len(name) < 4:
+        return "Error: Name too short"
+    vowels = 'aeiou'
+    if name[2] in vowels:
+        return name[:4]
+    else:
+        return name[:3]
+
+
+# Write a function that takes a string name as an argument and returns the first 3 or 4 letters as a nickname.
+
+def total_bill(s):
+    return (s.count('r') - (s.count('r') // 5)) * 2
+
+
+
+
 
 
 
