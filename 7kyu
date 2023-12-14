@@ -434,6 +434,16 @@ def total_bill(s):
     return (s.count('r') - (s.count('r') // 5)) * 2
 
 
+# Given an array of integers. Find the minimum sum which is obtained from summing each Two integers product.
+
+def min_sum(arr):
+    arr = sorted(arr)
+    total = 0
+    for num in range(len(arr) // 2):
+        total += arr[num] * arr[-num - 1]
+    return total
+
+
 
 
 
