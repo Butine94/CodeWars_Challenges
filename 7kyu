@@ -500,6 +500,22 @@ def check_exam(arr1,arr2):
     return count if count >= 0 else 0
 
 
+#  you will be given a string and your task will be to return a list of ints detailing the count of uppercase letters, lowercase, numbers and special characters
+
+def solve(s):
+    up = 0
+    low = 0
+    num = 0
+    spec = 0
+    for i in range(len(s)):
+        if s[i] == s[i].upper() and s[i].isalpha():
+            up += 1
+        if s[i] == s[i].lower() and s[i].isalpha():
+            low += 1
+        if s[i].isdigit():
+            num += 1
+    return [up, low, num, len(s) - (up + low + num)]
+
 
 
 
