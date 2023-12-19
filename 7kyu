@@ -444,6 +444,48 @@ def min_sum(arr):
     return total
 
 
+# Given an array of N integers, you have to find how many times you have to add up the smallest numbers in the array until their Sum becomes greater or equal to K.
+
+def minimum_steps(n, k):
+    n.sort()
+    count = 0
+    total = 0
+    for num in n:
+        total += num
+        count += 1
+        if total >= k:
+            break
+    return count - 1
+
+
+# Create a function that returns the sum of the digits formed from the first and last digits, all the way to the center of the number.
+
+def closing_in_sum(n):
+    digits = [int(x) for x in str(n)]
+    result = []
+    for num in range(len(digits) // 2):
+        x = int(str(digits[num]) + str(digits[-1 - num]))
+        result.append(x)
+    if len(digits) % 2 == 0:
+        return sum(result)
+    else:
+        return sum(result) + digits[(len(digits) // 2)]
+
+
+# Take each number in the list and square it if it is even, or square root the number if it is odd. Take this new list and return the sum of it, rounded to two decimal places.
+
+import math
+
+def sum_square_even_root_odd(nums):
+    result = []
+    for num in nums:
+        if num % 2 == 0:
+            result.append(num * num)
+        else:
+            result.append(math.sqrt(num))
+    return round(sum(result), 2)
+
+
 
 
 
