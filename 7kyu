@@ -517,10 +517,48 @@ def solve(s):
     return [up, low, num, len(s) - (up + low + num)]
 
 
+# The Ones' Complement of a binary number is the number obtained by swapping all the 0s for 1s and all the 1s for 0s.
+
+def ones_complement(number):
+    result = []
+    for n in number:
+        if n == '1':
+            result.append(0)
+        elif n == '0':
+            result.append(1)
+    digits = ''.join(map(str, result))
+    return digits
 
 
+# Given two words and a letter, return a single word that's a combination of both words, merged at the point where the given letter first appears in each word. The returned word should have the beginning of the first word and the ending of the second, with the dividing letter in the middle. You can assume both words will contain the dividing letter.
+    
+def string_merge(string1, string2, letter):
+    letter_1 = string1.find(letter)
+    letter_2 = string2.find(letter)
+    result = []
+    for letter in string1[: letter_1]:
+        result.append(letter)
+    for letter in string2[letter_2:]:
+        result.append(letter)
+    return ''.join(map(str, result))
 
 
+# capitalize the letters that occupy even indexes and odd indexes separately. Index 0 will be considered even. capitalize("abcdef") = ['AbCdEf', 'aBcDeF']
+
+def capitalize(s):
+    odd = []
+    even = []
+    for letter in range(len(s)):
+        if letter % 2:
+            even.append(s[letter].upper())
+        else:
+            even.append(s[letter])
+    for letter in range(len(s)):
+        if letter % 2 == 0:
+            odd.append(s[letter].upper())
+        else:
+            odd.append(s[letter])
+    return [''.join(array) for array in [odd, even]]
 
 
 
