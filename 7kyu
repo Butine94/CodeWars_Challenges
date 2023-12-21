@@ -561,4 +561,89 @@ def capitalize(s):
     return [''.join(array) for array in [odd, even]]
 
 
+# Given two integer arrays where the second array is a shuffled duplicate of the first array with one element missing, find the missing element.
+
+def find_missing(arr1, arr2):
+    arr1 = sorted(arr1)
+    arr2 = sorted(arr2)
+    result = []
+    for i in range(len(arr1) - 1):
+        if arr1[i] != arr2[i]:
+            result.append(arr1[i])
+    return arr1[-1] if result == [] else result[0]
+
+
+# Given a list of values, return a list with each value replaced with the empty value of the same type. test.assert_equals(empty_values([None, [None], (None,[None]), {None}, True, 7.0, 7, "None
+
+def empty_values(lst):
+    result = []
+    for char in lst:
+        if char is None:
+            result.append(None)
+        elif isinstance(char, int):
+            result.append(0)
+        elif isinstance(char, float):
+            result.append(0.0)
+        elif isinstance(char, str):
+            result.append("")
+        elif isinstance(char, bool):
+            result.append(False)
+        elif isinstance(char, list):
+            result.append([])
+        elif isinstance(char, tuple):
+            result.append(())
+        elif isinstance(char, dict):
+            result.append({})
+        elif isinstance(char, set):
+            result.append(set())
+    return result
+
+
+# find the similarity of given sorted arrays a and b
+
+def similarity(a, b):
+    c = set(a + b)
+    d = [n for n in b if n in a]
+    return len(d) / len(c)
+
+
+# The difference means that either the character is present in one collection or it is present in other, but not in both. Return a sorted list with the difference.
+
+def diff(a, b):
+    return sorted(set([x for x in a if x not in b] + [x for x in b if x not in a]))
+
+
+# remove all consecutive duplicate words from a string, leaving only first words entries. 
+
+def remove_consecutive_duplicates(str):
+    first_occ = []
+    str = str.split(" ")
+    result = []
+    for word in range(len(str) - 1):
+        if str[word] != str[word+1]:
+            result.append(str[word])
+    return ' '.join(result + [str[-1]])
+
+
+# Strong number is the number that the sum of the factorial of its digits is equal to number itself.
+
+import math
+
+def strong_num(number):
+    digits = [int(x) for x in str(number)]
+    result = []
+    for num in digits:
+        result.append(math.factorial(num))
+    if sum(result) == number:
+        return "STRONG!!!!"
+    else:
+        return "Not Strong !!"
+
+
+
+
+
+
+
+
 
