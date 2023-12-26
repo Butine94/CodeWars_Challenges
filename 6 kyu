@@ -1,1 +1,5 @@
+# Given an array of integers, find the one that appears an odd number of times.
 
+def find_it(seq):
+    counts = {n: seq.count(n) for n in seq if seq.count(n) % 2}
+    return list(counts.keys())[0]
