@@ -148,3 +148,113 @@ def double_every_other(lst):
     return result
 
 
+def sort_my_string(s):
+    even = []
+    odd = []
+    for i in range(len(s)):
+        if i % 2:
+            odd.append(s[i])
+        else:
+            even.append(s[i])
+    return ''.join(even) + ' ' + ''.join(odd)
+
+
+def product(s):
+    e_count = s.count('!')
+    q_count = s.count('?')
+    return e_count * q_count
+
+
+def remove(str):
+    e_count = str.count('!')
+    str_del = str.replace('!', '')
+    result = str_del + ('!' * e_count)
+    return result
+
+
+def remove(s):
+    s = s.split(' ')
+    result = []
+    for word in s:
+        if word.count('!') != 1:
+            result.append(word)
+    return ' '.join(result)
+
+
+def even_or_odd(s):
+    digits = [int(x) for x in s]
+    even = sum(n for n in digits if n % 2 == 0)
+    odd = sum(n for n in digits if n % 2 == 1)
+    if even > odd:
+        return "Even is greater than Odd"
+    if odd > even:
+        return "Odd is greater than Even"
+    if odd == even:
+        return "Even and Odd are the same"
+
+def find_short(s):
+    result = [len(word) for word in s.split(' ')]
+    return min(result)
+
+
+def find_digit(num, nth):
+    if len(str(num)) < nth:
+        return 0
+    else:
+        return [int(n) for n in str(num)[::-1][nth - 1]][0] if nth > 0 else -1
+
+
+def find_missing_numbers(arr):
+    if not arr:
+        return []
+    lst = list(range(arr[0], arr[-1] + 1))
+    return [x for x in lst if x not in arr]
+
+
+def spoonerize(words):
+    word_1, word_2 = words.split()[0], words.split()[1]
+    return f'{word_2[0]}{word_1[1:]} {word_1[0]}{word_2[1:]}'
+
+
+def validate_word(word):
+    counter = {letter: word.count(letter) for letter in word.lower()}
+    return len(set(counter.values())) == 1
+
+
+def most_frequent_item_count(collection):
+    return max([collection.count(x) for x in collection]) if collection else 0
+
+
+def make_string(s):
+    return ''.join([word[0] for word in s.split()])
+
+
+import re
+
+def sum_of_integers_in_string(s):
+    return sum(int(x) for x in re.findall(r'\d+', s))
+
+
+def time_convert(num):
+    hh = num // 60
+    mm = num % 60
+    if len(str(mm)) == 1:
+        mm = f'0{mm}'
+    if len(str(hh)) == 1:
+        hh = f'0{hh}'
+    return f'{hh}:{mm}' if num > 0 else '00:00'
+
+
+def even_numbers_before_fixed(sequence, fixed):
+    if fixed not in sequence:
+        return -1
+    return len([x for x in sequence[: sequence.index(fixed)] if x % 2 == 0])
+
+
+def min_min_max(arr):
+    x = min(arr)
+    z = max(arr)
+    y = min([n for n in range(x, z) if n not in arr])
+    return [x, y, z]
+
+
