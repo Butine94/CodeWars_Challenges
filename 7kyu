@@ -802,5 +802,39 @@ def missing_values(seq):
 
 
 
+# You have to create a method "compoundArray" which should take as input two int arrays of different length and return one int array with numbers of both arrays shuffled one by one.
+
+def compound_array(a, b):
+    length = abs(len(a) - len(b))
+    arr = [(x, y) for x, y in zip(a, b)]
+    if len(a) != len(b):
+        return [n for tuple in arr for n in tuple] + (a[-length:] if len(a) > len(b) else b[-length:])
+    else:
+        return [n for tuple in arr for n in tuple]
 
 
+# determine how many files of the copy queue you will be able to save into your Hard Disk Drive. The files must be saved in the order they appear in the queue.
+
+def save(sizes, hd):
+    total = 0
+    index = 0
+    for i in range(len(sizes)):
+        total += sizes[i]
+        index += 1
+        if total > hd:
+            index = index - 1
+            break
+    return index
+
+
+def to_camel_case(text):
+    words = text.replace('-', '_').split('_')
+    return ''.join([words[0]] + [word.capitalize() for word in words[1:]])
+
+
+def narcissistic(n):
+    return n == sum([int(x) ** len(str(n)) for x in str(n)])
+
+
+def title_case(title, minor_words):
+    return ' '.join([title[0].capitalize()] + [word.capitalize() if word not in minor_words.split() else word for word in title.split()[1:]])
