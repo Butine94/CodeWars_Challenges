@@ -3,3 +3,35 @@
 def find_it(seq):
     counts = {n: seq.count(n) for n in seq if seq.count(n) % 2}
     return list(counts.keys())[0]
+
+# Write a function that will return the count of distinct case-insensitive alphabetic characters and numeric digits that occur more than once in the input string. 
+
+def duplicate_count(text):
+    text = text.lower()
+    result = [x for x in text if text.count(x) >= 2]
+    return len(set(result)) if not [] else 0
+
+
+# Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.
+
+def unique_in_order(sequence):
+    return ([sequence[i] for i in range(len(sequence) - 1) if sequence[i] != sequence[i+1]] + [sequence[-1]]) if sequence else []
+
+
+# convert a string to a new string where each character in the new string is "(" if that character appears only once in the original string, or ")" if that character appears more than once in the original string
+
+def duplicate_encode(word):
+    word_lower = word.lower()
+    return ''.join(['(' if word_lower.count(x) == 1 else ')' for x in word_lower])
+
+
+# Given a lowercase string that has alphabetic characters only and no spaces, return the highest value of consonant substrings. 
+
+import re
+
+def solve(s):
+    alpha = '_abcdefghijklmnopqrstuvwxyz'
+    str = re.split(r'[aeiou]', s)
+    return max([sum([alpha.index(letter) for letter in word]) for word in str])
+
+
