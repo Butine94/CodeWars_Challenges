@@ -324,3 +324,11 @@ def solution(number):
             result.append(n)
     return sum(set(result))
 
+
+def highest_value(a, b):
+    sum_a = sum([ord(x) for x in a])
+    sum_b = sum([ord(x) for x in b])
+    if sum_a >= sum_b:
+        return a
+    else:
+        return b
