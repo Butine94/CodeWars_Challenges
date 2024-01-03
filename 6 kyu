@@ -35,3 +35,21 @@ def solve(s):
     return max([sum([alpha.index(letter) for letter in word]) for word in str])
 
 
+
+# Write a function that when given a number >= 0, returns an Array of ascending length subarrays.
+
+def pyramid(n):
+    lst = list(range(1, n + 1))
+    return [[1, ]  * digit for digit in lst]
+
+
+# Complete the solution so that it splits the string into pairs of two characters.
+
+def solution(s):
+    odd = [s[i] for i in range(0, len(s), 2)]
+    even = [s[i] for i in range(1, len(s), 2)]
+    if len(odd) == len(even):
+        return [x + y for x, y in zip(odd, even)]
+    else:
+        return [x + y for x, y in zip(odd, even)] + [odd[-1] + '_']
+
