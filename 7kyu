@@ -937,3 +937,59 @@ def format_words(words):
         return words[0]
     else:
         return ', '.join(words[:-1]) + ' and ' + words[-1]
+
+
+def total(arr):
+    if len(arr) == 1:
+        return arr[0]
+    while len(arr) > 1:
+        result = []
+        for i in range(len(arr) - 1):
+            sums = arr[i] + arr[i+1]
+            result.append(sums)
+        arr = result
+    return result[0]
+
+
+def missing(nums, s):
+    nums = sorted(nums)
+    s = s.replace(' ', '').lower()
+    if max(nums) > len(s) - 1:
+        return "No mission today"
+    result = [s[x] for x in nums if x < len(s)]
+    return ''.join(result)
+
+
+from collections import Counter
+
+def find_the_missing_tree(trees):
+    unbalanced = None
+    counts = Counter(trees)
+    min_values = min(list(counts.values()))
+    for k, v in counts.items():
+        if v == min_values:
+            return k
+
+
+from collections import Counter
+
+def balance(arr1, arr2):
+    arr1_counter = Counter(arr1)
+    arr2_counter = Counter(arr2)
+    arr1_values = sorted(arr1_counter.values())
+    arr2_values = sorted(arr2_counter.values())
+    if arr1_values == arr2_values:
+        return True
+    else:
+        return False
+
+
+def same(arr_a, arr_b):
+    arr__a = sorted([x for sub in arr_a for x in sub])
+    arr__b = sorted([x for sub in arr_b for x in sub])
+    return arr__a == arr__b
+
+
+
+
+
