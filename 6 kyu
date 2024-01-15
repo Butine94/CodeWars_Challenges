@@ -53,3 +53,147 @@ def solution(s):
     else:
         return [x + y for x, y in zip(odd, even)] + [odd[-1] + '_']
 
+# Find the first character that repeats in a String and return that character.
+
+from collections import Counter
+
+def first_dup(s):
+    if len(set(s)) == len(s):
+        return None
+    counts = Counter(s)
+    for v in counts.values():
+            return [k for k, v in counts.items() if v >= 2][0]
+
+
+def max_and_min(arr1,arr2):
+    max_diff = float('-inf')
+    min_diff = float('inf')
+    for n in arr1:
+        for x in arr2:
+            diff = abs(n - x)
+            if diff > max_diff:
+                max_diff = diff
+            if diff < min_diff:
+                min_diff = diff
+    return [max_diff, min_diff]
+
+
+def typist(s):
+    count = 0
+    for i in range(1, len(s)):
+        if s[i].islower() and s[i-1].islower():
+            count += 1
+        if s[i].islower() and s[i-1].isupper():
+            count += 2
+        if s[i].isupper() and s[i-1].isupper():
+            count += 1
+        if s[i].isupper() and s[i-1].islower():
+            count += 2
+    start = [1 if x.islower() else 2 for x in s[0]][0]
+    return count + start
+
+
+import math
+
+def lowest_product(num):
+    if len(num) < 4:
+        return "Number is too small"
+    minimum = float('inf')
+    for i in range(len(num) - 3):
+        sums = math.prod(int(digit) for digit in num[i:i+4])
+        if sums < minimum:
+            minimum = sums
+    return minimum
+
+
+def solution(s):
+    alpha = 'abcdefghijklmnopqrstuvwxy'
+    result = []
+    st = s[0]
+    for i in range(1, len(s)):
+        if ord(s[i-1]) + 1 == ord(s[i]):
+            st += s[i]
+        else:
+            result.append(st)
+            st = s[i]
+    result.append(st)
+    reverse = [x[::-1] if len(x) > 1 else x for x in result]
+    return ''.join(reverse)
+
+
+def sort_array(array):
+    odd = sorted([x for x in array if x % 2])
+    result = []
+    for n in array:
+        if n % 2:
+            result.append(odd.pop(0))
+        else:
+            result.append(n)
+    return result
+
+
+def clean_string(s):
+    result = []
+    for char in s:
+        if char == '#' and result:
+            result.pop()
+        else:
+            result.append(char)
+    return ''.join(result)
+
+
+def clean_string(s):
+    result = []
+    for char in s:
+        if char == '#' and result:
+            result.pop()
+        else:
+            result.append(char)
+    return ''.join([x for x in result if x != '#'])
+
+
+from collections import Counter
+
+def highest_rank(arr):
+    counts = Counter(arr)
+    max_value = max([x for x in counts.values()])
+    return max([k for k, v in counts.items() if v == max_value])
+
+
+def longest_repetition(chars):
+    if not chars:
+        return ('', 0)
+    count = 1
+    result = []
+    for i in range(1, len(chars)):
+        if chars[i-1] == chars[i]:
+            count += 1
+        else:
+            x = (chars[i-1], count)
+            result.append(x)
+            count = 1
+    x = (chars[-1], count)
+    result.append(x)
+    return sorted(result, key=lambda x: x[1], reverse=True)[0]
+
+
+def solve(arr):
+    return sorted(arr, key=lambda x: (-arr.count(x), x))
+
+
+def average_string(s):
+    if not s:
+        return 'n/a'
+    numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    sums = 0
+    for n in s.split():
+        if n not in numbers:
+            return 'n/a'
+        else:
+            x = numbers.index(n)
+            sums += x
+    average = sums // len(s.split())
+    for i, number in enumerate(numbers):
+        if average == i:
+            return number
+
