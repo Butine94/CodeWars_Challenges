@@ -332,3 +332,12 @@ def highest_value(a, b):
         return a
     else:
         return b
+
+
+import re
+
+def get_number_from_string(st):
+    return int(''.join(re.findall(r'\d', st)))
+
+
+
