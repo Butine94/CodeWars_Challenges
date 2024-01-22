@@ -65,6 +65,95 @@ def first_dup(s):
             return [k for k, v in counts.items() if v >= 2][0]
 
 
+# Create a function isAlt() that accepts a string as an argument and validates whether the vowels (a, e, i, o, u) and consonants are in alternate order.
+
+def is_alt(s):
+    vowels = 'aeiou'
+    for i in range(1, len(s)):
+        if (s[i-1] in vowels) == (s[i] in vowels):
+            return False
+        if (s[i-1] not in vowels) == (s[i] not in vowels):
+            return False
+    return True
+
+
+# write a function which will reverse the vowels in a string.
+
+def reverse_vowels(s):
+    vowels = 'aeiouAEIOU'
+    vowels_lst = [letter for letter in s if letter in vowels]
+    result = []
+    for letter in s:
+        if letter not in vowels:
+            result.append(letter)
+        else:
+            result.append(vowels_lst.pop())
+    return ''.join(result)
+
+
+# Your task is to sort odd numbers within the array in ascending order, and even numbers in descending order.
+
+def sort_array(a):
+    odd = sorted([x for x in a if x % 2 == 1])
+    even = sorted([x for x in a if x % 2 == 0], reverse=True)
+    result = []
+    for n in a:
+        if n % 2 == 1:
+            result.append(odd.pop(0))
+        else:
+            result.append(even.pop(0))
+    return result
+
+
+# Your task is to return an array giving each number its rank in the array.
+
+def rankings(arr):
+    sorted_arr = sorted(arr, reverse=True)
+    dict = {n: i for i, n in enumerate(sorted_arr, 1)}
+    result = []
+    for x in arr:
+        for k, v in dict.items():
+            if k == x:
+                result.append(dict[k])
+    return result
+
+
+# Write a method that takes an array of consecutive (increasing) letters as input and that returns the missing letter in the array.
+
+def find_missing_letter(chars):
+    alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    for i in range(1, len(chars)):
+        if ord(chars[i-1]) + 1 != ord(chars[i]):
+            indx = alpha.index(chars[i-1])
+            return alpha[indx+1]
+
+
+# write a function that does just what the title suggests
+
+def first_n_smallest(arr, n):
+    sorted_arr = sorted(arr)[:n]
+    result = []
+    for n in arr:
+        if n in sorted_arr:
+            result.append(n)
+            sorted_arr.remove(n)
+    return result
+
+
+# How many characters do we have to remove from the first string to get the second string?
+
+def solve(a, b):
+    if len(b) > len(a):
+        return 0
+    new_str = a
+    for letter in b:
+        if letter in new_str:
+            new_str = new_str.replace(letter, '', 1)
+        else:
+            return 0
+    return len(new_str)
+
+
 def max_and_min(arr1,arr2):
     max_diff = float('-inf')
     min_diff = float('inf')
