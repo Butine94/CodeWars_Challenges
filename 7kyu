@@ -990,6 +990,67 @@ def same(arr_a, arr_b):
     return arr__a == arr__b
 
 
+def sort_by_height(a):
+    result = []
+    digits = sorted([x for x in a if x != -1])
+    for n in a:
+        if n == -1:
+            result.append(-1)
+        else:
+            result.append(digits.pop(0))
+    return result
+
+
+def remove_smallest(numbers):
+    if not numbers:
+        return []
+    min_indx = numbers.index(min(numbers))
+    return numbers[:min_indx] + numbers[min_indx+1:]
+
+
+class List:
+    def remove_(self, integer_list, values_list):
+        return [x for x in integer_list if x not in values_list]
+
+
+def split_in_parts(s, part_length):
+    result = []
+    for i, char in enumerate(s, 1):
+        if i % part_length == 0:
+            result.append(f'{char} ')
+        else:
+            result.append(char)
+    return ''.join(result).rstrip()
+
+
+def nth_char(words):
+    return ''.join([words[i][i] for i in range(len(words))])
+
+
+def matrix(arr):
+    for i in range(len(arr[0])):
+        for j in range(len(arr[0])):
+            if i == j and arr[i][j] < 0:
+                arr[i][j] = 0
+            elif i == j and arr[i][j] >= 0:
+                arr[i][j] = 1
+    return arr
+
+
+def flatten_and_sort(array):
+    return sorted([x for sub_arr in array for x in sub_arr])
+
+
+def sum_nested(lst):
+    sum = 0
+    for n in lst:
+        if isinstance(n, int):
+            sum += n
+        if isinstance(n, list):
+            sum += sum_nested(n)
+    return sum
+
+
 
 
 
