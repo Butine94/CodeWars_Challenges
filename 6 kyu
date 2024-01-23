@@ -153,6 +153,43 @@ def solve(a, b):
             return 0
     return len(new_str)
 
+# Given an array of integers of any length, return an array that has 1 added to the value represented by the array.
+
+def up_array(arr):
+    if any(x < 0 or x > 9 for x in arr):
+        return None
+    number = int(''.join(map(str, arr)))+1
+    return list(map(int, str(number))) if arr[0] != 0
+
+
+# Finish the solution so that it takes an input n (integer) and returns a string that is the decimal representation of the number grouped by commas after every 3 digits.
+
+def group_by_commas(n):
+    n = str(n)
+    if len(n) <= 3:
+        return n
+    reversed_n = n[::-1]
+    st = ''
+    for i, n in enumerate(reversed_n, 1):
+        if i % 3 == 0:
+            st += f'{n},'
+        else:
+            st += n
+    return st[::-1].lstrip(',')
+
+
+# Complete the solution so that it returns true if it contains any duplicate argument values. 
+
+from collections import Counter
+
+def solution(*args):
+    if not args:
+        return False
+    
+    counts = Counter(args) 
+    return any(count > 1 for count in counts.values())
+
+
 
 def max_and_min(arr1,arr2):
     max_diff = float('-inf')
@@ -285,4 +322,5 @@ def average_string(s):
     for i, number in enumerate(numbers):
         if average == i:
             return number
+
 
