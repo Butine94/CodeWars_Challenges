@@ -1051,6 +1051,35 @@ def sum_nested(lst):
     return sum
 
 
+def ones_counter(inp):
+    result = []
+    count = 0
+    for i in range(len(inp)):
+        if inp[i] == 1:
+            count += 1
+        else:
+            if count > 0:
+                result.append(count)
+                count = 0
+    if count > 0:
+        result.append(count)
+    return result
 
+
+def count_letters_and_digits(s):
+    return sum([1 for x in s if x.isalpha() or x.isdigit()])
+
+
+def repeat_sum(l):
+    flat_lst = [x for sub_arr in l for x in sub_arr]
+    sums = []
+    for x in flat_lst:
+        count = 0
+        for i in range(len(l)):
+            if x in l[i]:
+                count += 1
+                if count == 2:
+                    sums.append(x)
+    return sum(set(sums))
 
 
