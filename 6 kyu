@@ -190,6 +190,60 @@ def solution(*args):
     return any(count > 1 for count in counts.values())
 
 
+# The hamming distance between a pair of numbers is the number of binary bits that differ in their binary notation.
+
+def hamming_distance(a, b):
+    bin_a = bin(a)[2:]
+    bin_b = bin(b)[2:]
+    difference = abs(len(bin_a) - len(bin_b))
+    if len(bin_b) > len(bin_a):
+        bin_a = '0' * difference + bin_a
+    if len(bin_a) > len(bin_b):
+        bin_b = '0' * difference + bin_b
+    count = 0
+    for i in range(len(bin_a)):
+        if bin_a[i] != bin_b[i]:
+            count += 1
+    return count
+
+
+# Your task is to split the string into separate digits
+
+def uncollapse(digits):
+    words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    number = ''
+    result = []
+    for letter in digits:
+        number += letter
+        for word in words:
+            if word == number:
+                result.append(word)
+                number = ''
+    return ' '.join(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def max_and_min(arr1,arr2):
     max_diff = float('-inf')
@@ -322,5 +376,8 @@ def average_string(s):
     for i, number in enumerate(numbers):
         if average == i:
             return number
+
+
+
 
 
