@@ -1080,6 +1080,15 @@ def repeat_sum(l):
                 count += 1
                 if count == 2:
                     sums.append(x)
+
+
+def sortme(words):
+    capitalised = [word for word in words if word[0].isupper()]
+    words_sorted = sorted(words, key=lambda x: x.lower())
+    return words_sorted
+
+
+
     return sum(set(sums))
 
 
