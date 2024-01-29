@@ -1089,6 +1089,41 @@ def sortme(words):
 
 
 
-    return sum(set(sums))
+def rev_sub(lst):
+    result = []
+    even_sublist = []
+    for i in range(len(lst)):
+        if lst[i] % 2 == 0:
+            even_sublist.append(lst[i])
+        else:
+            even_sublist = even_sublist[::-1]
+            result.extend(even_sublist)
+            even_sublist = []
+            result.append(lst[i])
+    even_sublist = even_sublist[::-1]
+    result.extend(even_sublist)
+    return result
 
+
+def kaprekar_split(n):
+    if n <= 1:
+        return 0
+    squared = str(n*n)
+    for i in range(1, len(squared)):
+        if n == int(squared[:i]) + int(squared[i:]):
+            return i
+    return -1
+
+
+import re
+
+def remove_chars(s):
+    return re.sub(r'[^A-Za-z\s]', '', s) 
+
+
+def add(n):
+    def inner(number):
+        return number + n
+    
+    return inner
 
