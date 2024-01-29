@@ -236,21 +236,174 @@ def dup(arr):
     return result
 
 
+# Find the sum of the digits of all the numbers from 1 to N (both ends included).
+
+def compute_sum(n):
+    lst = list(range(1, n+1))
+    sums = 0
+    for n in lst:
+        if n <= 9:
+            sums += n
+        else:
+            n = str(n)
+            for digit in n:
+                sums += int(digit)
+    return sums
 
 
+# Implement a function, so it will produce a sentence out of the given parts.
+
+import re
+
+def make_sentences(parts):
+    result = [parts[0]]
+    for x in parts[1:]:
+        if re.findall(r'[\dA-Za-z]', x):
+            st = f' {x}'
+            result.append(st)
+        elif re.findall(r'[,]', x):
+            st = f'{x}'
+            result.append(st)
+    result.append('.')
+    return ''.join(result)
 
 
+# You have to sort the inner content of every word of a string in descending order.
+
+def sort_the_inner_content(words):
+    words = words.split()
+    result = []
+    for word in words:
+        if len(word) > 2:
+            inner_word = sorted(word[1:-1], reverse=True)
+            complete_word = word[0] + ''.join(inner_word) + word[-1]
+            result.append(complete_word)
+        else:
+            result.append(word)
+    return ' '.join(result)
 
 
+# Given an integer n, find the maximal number you can obtain by deleting exactly one digit of the given number.
+
+def delete_digit(n):
+    n = str(n)
+    max_number = 0
+    current_number = 0
+    for i in range(len(n)):
+        current_number = int(n[:i] + n[i+1:])
+        if current_number > max_number:
+            max_number = current_number
+    return max_number
 
 
+# The summary is made by adding up the number of digits of all page numbers.
+
+def amount_of_pages(summary):
+    n = 0
+    for i in range(1,summary+1):
+        n += len(str(i))
+        if n >= summary:
+            return i
+    return None
 
 
+# Create a moreZeros function which will receive a string for input, and return an array
+
+def more_zeros(s):
+    binary = [bin(ord(x))[2:] for x in s]
+    result = []
+    for i, num in enumerate(binary):
+        if num.count('0') > num.count('1') and s[i] not in result:
+            result.append(s[i])
+    return result
 
 
+# Find the longest substring in alphabetical order.
+
+def longest(st):
+    current_st = st[0]
+    longest_st = ''
+    for i in range(1, len(st)):
+        if ord(st[i-1]) <= ord(st[i]):
+            current_st += st[i]
+        else:
+            if len(current_st) > len(longest_st):
+                longest_st = current_st
+            current_st = st[i]
+    
+    if len(current_st) > len(longest_st):
+        longest_st = current_st
+    
+    return longest_st
 
 
+# Write a function that takes a string and returns an array of the repeated characters (letters, numbers, whitespace) in the string.
 
+def remember(str_):
+    str_ = str_.lower()
+    result = []
+    duplicates = []
+    for char in str_:
+        if char not in result:
+            result.append(char)
+        elif char in result and char not in duplicates:
+            duplicates.append(char)
+    return duplicates
+
+# Could you make a program that makes this string uppercase and gives it sorted in alphabetical order by last name.
+
+def meeting(s):
+    s = s.upper().split(';')
+    result = []
+    for name in s:
+        first_name = name[:name.index(':')]
+        last_name = name[name.index(':') + 1:]
+        x = last_name, first_name
+        result.append(x)
+    sorted_result = sorted(result, key=lambda x: (x[0], x[1]))
+    return ''.join(f'({first}, {second})' for first, second in sorted_result)
+
+
+# Your job is to sum only the numbers that are the same and consecutive
+
+def sum_consecutives(nums):
+    result = []
+    total = nums[0]
+    for i in range(1, len(nums)):
+        if nums[i-1] == nums[i]:
+            total += nums[i]
+        else:
+            result.append(total)
+            total = nums[i]
+    result.append(total)
+    return result
+
+
+# The return of the function shall first be sorted by yymm, then by the name (which varies in length).
+
+def sort_me(courses): 
+    word_split = [word.split('-') for word in courses]
+    sorted_words = sorted(word_split, key=lambda x: (x[1], x[0]))
+    return [f'{word}-{number}' for word, number in sorted_words]
+
+
+# Given a string of digits, return the longest substring with alternating odd/even or even/odd digits.
+
+def longest_substring(digits):
+    if not digits:
+        return ""
+    current_str = digits[0]
+    longest_str = ''
+    for i in range(1, len(digits)):
+        if int(digits[i-1]) % 2 != int(digits[i]) % 2:
+            current_str += digits[i]
+        else:
+            if len(current_str) > len(longest_str):
+                longest_str = current_str
+            current_str = digits[i]
+    if len(current_str) > len(longest_str):
+        longest_str = current_str
+    return longest_str
 
 
 
@@ -395,6 +548,12 @@ def number_of_pairs(gloves):
     counts = Counter(gloves).items()
     pairs = {k: v // 2 for k, v in counts}
     return sum(pairs.values())
+
+
+import re
+
+def remove_url_anchor(url):
+    return re.sub(r'#[^>]+', '', url)
 
 
 
