@@ -1127,3 +1127,65 @@ def add(n):
     
     return inner
 
+
+def heggeleggleggo(word):
+    consonants = 'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ'
+    st = ''
+    for char in word:
+        if char in consonants:
+            st += char + 'egg'
+        else:
+            st += char
+    return st
+
+
+import re
+def vowel_start(st): 
+    vowels = 'AEIOUaeiou'
+    st = ''.join(re.sub('[^A-Za-z0-9]', '', st.lower()))
+    res = ''
+    for char in st:
+        if char in vowels:
+            res += ' ' + char
+        else:
+            res += char
+    return res.lstrip()
+
+
+import re
+
+def is_vowel(s):
+    if not s:
+        return False
+    return bool(re.match(r'[AEIOUaeiou]?\Z', s))
+
+
+from datetime import datetime
+
+def time_for_milk_and_cookies(dt):
+    return dt.month == 12 and dt.day == 24
+
+
+import re
+
+def is_valid(idn):
+    return bool(re.match(r'^[A-Za-z_$]{1}[A-Za-z0-9_$]*$', idn))
+
+
+def initials(name):
+    name = name.split()
+    return '.'.join([word[0].upper() if word != name[-1] else word.capitalize() for word in name])
+
+
+def vowel_2_index(string):
+    vowels = 'aeiouAEIOU'
+    res = ''
+    for i, char in enumerate(string, 1):
+        if char in vowels:
+            res += str(i)
+        else:
+            res += char
+    return res
+
+
+
