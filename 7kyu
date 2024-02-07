@@ -1188,4 +1188,19 @@ def vowel_2_index(string):
     return res
 
 
+from datetime import datetime
 
+def elapsed_seconds(start, end):
+    difference = (end - start).seconds
+    return difference
+
+
+class Person():
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self, your_name):
+        self.your_name = your_name
+        return f"Hello {self.your_name}, my name is {self.name}"
+
+joe = Person('Joe')
