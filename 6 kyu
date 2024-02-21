@@ -406,6 +406,57 @@ def longest_substring(digits):
     return longest_str
 
 
+# Complete the function that takes an array of strings of common bird names from North America, and create the codes for those names based on the rules above.
+
+def bird_code(bird_names):
+    codes = []
+    for name in bird_names:
+        name = name.replace('-', ' ')
+        words = name.split()
+        code = ''
+        if len(words) == 1:
+            code = words[0][:4].upper()
+        elif len(words) == 2:
+            code = (words[0][:2] + words[1][:2]).upper()
+        elif len(words) == 3:
+            code = (words[0][0] + words[1][0] + words[2][:2]).upper()
+        elif len(words) >= 4:
+            code = ''.join(word[0] for word in words).upper()
+        codes.append(code)
+    return codes
+
+
+# Let's help with our own Hashtag Generator
+
+import re
+
+def generate_hashtag(s):
+    if not s or s == '#':
+        return False
+    words = re.findall('\w+', s)
+    res = '#' + ''.join(word.capitalize() for word in words)
+    if len(res) > 140:
+        return False
+    return res
+
+
+# Complete the function/method so that it takes a PascalCase string and returns the string in snake_case notation
+
+import re
+
+def to_underscore(string):
+    if type(string) == int:
+        return str(string)
+    words = re.findall('[A-Z][a-z0-9]*', string)
+    return ('_'.join(words)).lower()
+
+
+
+
+
+
+
+
 
 
 
