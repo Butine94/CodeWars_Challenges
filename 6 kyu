@@ -451,6 +451,34 @@ def to_underscore(string):
     return ('_'.join(words)).lower()
 
 
+# Write a function that accepts a string, and returns true if it is in the form of a phone number.
+
+import re
+
+def valid_phone_number(phone_number):
+    return bool(re.fullmatch(r'^\(\d{3}\)\s\d{3}\-\d{4}$', phone_number))
+
+
+# You will create 2 string methods
+
+import re
+
+def is_audio(file_name):
+    return bool(re.fullmatch(r'^[A-Za-z0-9]+(.mp3|.flac|.alac|.aac)$', file_name))
+
+def is_img(file_name):
+    return bool(re.fullmatch(r'^[A-Za-z]+(.jpg|.jpeg|.png|.bmp|.gif)$', file_name))
+
+
+# if the number of meetup participants representing any of the three programming languages is at most 2 times higher than the number of developers representing any of the remaining programming languages
+
+def is_language_diverse(lst):
+    languages = [dev['language'] for dev in lst]
+    languages_count = {language: languages.count(language) for language in languages}
+    sorted_languages = sorted(languages_count.values())
+    if sorted_languages[0] * 2 < sorted_languages[-1]:
+        return False
+    return True
 
 
 
