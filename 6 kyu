@@ -481,6 +481,59 @@ def is_language_diverse(lst):
     return True
 
 
+# Given an array (arr) as an argument complete the function countSmileys that should return the total number of smiling faces.
+
+import re
+
+def count_smileys(arr):
+    count = 0
+    for face in arr:
+        if re.match('[:;][-~]?[)D]', face):
+            count += 1
+    return count
+
+
+# Given an integer, return a string with dash '-' marks before and after each odd digit, but do not begin or end the string with a dash mark.
+
+import re
+
+def dashatize(num):
+    num = str(num)
+    return '-'.join(re.findall('[13579]|[02468]+', num))
+
+
+# write a method, that return the length of the missing array.
+
+def get_length_of_missing_array(arrays):
+    if not arrays or any(not arr for arr in arrays):
+        return 0
+    arrays = sorted(arrays, key=lambda arr: len(arr))
+    length = [len(arr) for arr in arrays]
+    for i in range(1, len(length)):
+        if length[i-1] + 1 != length[i]:
+            return length[i-1] + 1
+
+
+# write a function called isOddHeavy or is_odd_heavy that accepts an integer array and returns true if the array is odd-heavy else return false.
+
+def is_odd_heavy(arr):
+    arr = sorted(arr, reverse=True)
+    even = []
+    odd = []
+    for i, num in enumerate(arr):
+        if num % 2 == 0:
+            even.append(num)
+        if num % 2 == 1:
+            odd.append(num)
+    length = len(odd)
+    if length == 0:
+        return False
+    if arr[length:] != even:
+        return False
+    return True
+
+
+
 
 
 
