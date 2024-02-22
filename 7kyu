@@ -1235,6 +1235,44 @@ def count_repeats(txt):
     return len(res)
             
 
+def in_array(array1, array2):
+    res = []
+    for word1 in array1:
+        for word2 in array2:
+            if word1 in word2:
+                res.append(word1)
+    return sorted(list(set(res)))
+
+
+def array_diff(a, b):
+    return [x for x in a if x not in b]
+
+
+def count_bits(n):
+    return len([str(bin(n))[2:][i] for i in range(len(str(bin(n))[2:])) if str(bin(n))[2:][i] == '1'])
+
+
+def two_sum(arr, target):
+    for i in range(len(arr)):
+        for j in range(i+1, len(arr)):
+            if arr[i] + arr[j] == target:
+                return (i, j)
+
+
+import math
+
+def solve(arr):
+    return math.prod([len(set(sub_arr)) for sub_arr in arr])
+
+
+def sort_emotions(arr, order):
+    faces = [ ':D', ':)', ':|', ':(', 'T_T' ]
+    if order == True:
+        return sorted(arr, key=lambda char: faces.index(char))
+    else:
+        return sorted(arr, key=lambda char: faces.index(char), reverse=True)
+
+
 
 
 
