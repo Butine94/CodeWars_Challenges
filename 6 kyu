@@ -533,6 +533,20 @@ def is_odd_heavy(arr):
     return True
 
 
+# The function must return the sequence of titles that match the string passed as an argument.
+
+import re
+
+def search(titles, term):
+    res = []
+    for title in titles:
+        match = re.search(term, title, re.IGNORECASE)
+        if match:
+            res.append(title)
+    return res
+
+
+
 
 
 
