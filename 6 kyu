@@ -634,17 +634,63 @@ def shortest_to_char(s, c):
     return res
 
 
+# Write a function that takes an arbitrary number of strings and interlaces them
+
+def combine_strings(*args):
+    if not args:
+        return ''
+    max_length = max(len(arg) for arg in args)
+    res = ''
+    for j in range(max_length):
+        for i in range(len(args)):
+            if j < len(args[i]):
+                res += args[i][j]
+    return res
 
 
+# Write a function which outputs the positions of matching bracket pairs. 
+
+def bracket_pairs(strng):
+    if not strng:
+        return {}
+    if strng.count('(') != strng.count(')'):
+        return False
+    stack = []
+    bracket_index = {}
+    for i, char in enumerate(strng):
+        if char == '(':
+            stack.append(i)
+        elif char == ')':
+            if stack:
+                bracket_index[stack.pop()] = i
+            else:
+                return False
+    return dict(sorted(bracket_index.items()))
 
 
+# find the strings that have the same characters and return the sum of their positions 
+
+def solve(arr):
+    sorted_arr = [''.join(sorted(set(word))) for word in arr]
+    word_index = {}
+    res = []
+    for i, word in enumerate(sorted_arr):
+        if word not in word_index:
+            word_index[word] = [i]
+        else:
+            word_index[word].append(i)
+    for values in word_index.values():
+        if len(values) >= 2:
+            res.append(sum(values))
+    return sorted(res)
 
 
+# return true if given object is an IPv4 address - four numbers (0-255) separated by dots.
 
+import re
 
-
-
-
+def ipv4_address(address):
+    return bool(re.fullmatch(r'^(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]?\d)$', address))
 
 
 
