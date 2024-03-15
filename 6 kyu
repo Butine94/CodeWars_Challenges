@@ -546,160 +546,103 @@ def search(titles, term):
     return res
 
 
-
-
-
-
-
-
-
-
-
-def max_and_min(arr1,arr2):
-    max_diff = float('-inf')
-    min_diff = float('inf')
-    for n in arr1:
-        for x in arr2:
-            diff = abs(n - x)
-            if diff > max_diff:
-                max_diff = diff
-            if diff < min_diff:
-                min_diff = diff
-    return [max_diff, min_diff]
-
-
-def typist(s):
-    count = 0
-    for i in range(1, len(s)):
-        if s[i].islower() and s[i-1].islower():
-            count += 1
-        if s[i].islower() and s[i-1].isupper():
-            count += 2
-        if s[i].isupper() and s[i-1].isupper():
-            count += 1
-        if s[i].isupper() and s[i-1].islower():
-            count += 2
-    start = [1 if x.islower() else 2 for x in s[0]][0]
-    return count + start
-
-
-import math
-
-def lowest_product(num):
-    if len(num) < 4:
-        return "Number is too small"
-    minimum = float('inf')
-    for i in range(len(num) - 3):
-        sums = math.prod(int(digit) for digit in num[i:i+4])
-        if sums < minimum:
-            minimum = sums
-    return minimum
-
-
-def solution(s):
-    alpha = 'abcdefghijklmnopqrstuvwxy'
-    result = []
-    st = s[0]
-    for i in range(1, len(s)):
-        if ord(s[i-1]) + 1 == ord(s[i]):
-            st += s[i]
-        else:
-            result.append(st)
-            st = s[i]
-    result.append(st)
-    reverse = [x[::-1] if len(x) > 1 else x for x in result]
-    return ''.join(reverse)
-
-
-def sort_array(array):
-    odd = sorted([x for x in array if x % 2])
-    result = []
-    for n in array:
-        if n % 2:
-            result.append(odd.pop(0))
-        else:
-            result.append(n)
-    return result
-
-
-def clean_string(s):
-    result = []
-    for char in s:
-        if char == '#' and result:
-            result.pop()
-        else:
-            result.append(char)
-    return ''.join(result)
-
-
-def clean_string(s):
-    result = []
-    for char in s:
-        if char == '#' and result:
-            result.pop()
-        else:
-            result.append(char)
-    return ''.join([x for x in result if x != '#'])
-
-
-from collections import Counter
-
-def highest_rank(arr):
-    counts = Counter(arr)
-    max_value = max([x for x in counts.values()])
-    return max([k for k, v in counts.items() if v == max_value])
-
-
-def longest_repetition(chars):
-    if not chars:
-        return ('', 0)
-    count = 1
-    result = []
-    for i in range(1, len(chars)):
-        if chars[i-1] == chars[i]:
-            count += 1
-        else:
-            x = (chars[i-1], count)
-            result.append(x)
-            count = 1
-    x = (chars[-1], count)
-    result.append(x)
-    return sorted(result, key=lambda x: x[1], reverse=True)[0]
-
-
-def solve(arr):
-    return sorted(arr, key=lambda x: (-arr.count(x), x))
-
-
-def average_string(s):
-    if not s:
-        return 'n/a'
-    numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-    sums = 0
-    for n in s.split():
-        if n not in numbers:
-            return 'n/a'
-        else:
-            x = numbers.index(n)
-            sums += x
-    average = sums // len(s.split())
-    for i, number in enumerate(numbers):
-        if average == i:
-            return number
-
-
-from collections import Counter
-
-def number_of_pairs(gloves):
-    counts = Counter(gloves).items()
-    pairs = {k: v // 2 for k, v in counts}
-    return sum(pairs.values())
-
+# count words in text blocks.
 
 import re
 
-def remove_url_anchor(url):
-    return re.sub(r'#[^>]+', '', url)
+def word_count(s):
+    count = 0
+    delete = {"a", "the", "on", "at", "of", "upon", "in", "as"}
+    s = s.lower()
+    words = re.findall('[a-z]+', s)
+    return len([word for word in words if word not in delete])
+
+
+# give this string ordered by "weights" of these numbers
+
+def order_weight(strng):
+    strng_split = strng.split()
+    res = []
+    for num in strng_split:
+        sums = sum(int(n) for n in num)
+        res.append((sums, num))
+    return ' '.join([y[1] for y in sorted(res, key=lambda x: (x[0], x))])
+
+
+# Write a function that receives two strings and returns n, where n is equal to the number of characters we should shift the first string forward to match the second. 
+
+def shifted_diff(first, second):
+    length = len(first)
+    for i in range(length):
+        rotated_first = first[-i:] + first[:-i] 
+        if rotated_first == second:
+            return i
+    return -1
+
+
+# a function which compares two versions, and returns whether or not the first one is greater than or equal to the second.
+
+def compare_versions(version1, version2):
+    version1_split = version1.split('.')
+    version2_split = version2.split('.')
+    max_length = max(len(version1_split), len(version2_split))
+    if len(version1_split) < len(version2_split):
+        version1_split = version1_split + ['0']
+    if len(version1_split) > len(version2_split):
+        version2_split = version2_split + ['0']
+    for i in range(max_length):
+        if int(version1_split[i]) > int(version2_split[i]):
+            return True
+        elif int(version1_split[i]) < int(version2_split[i]):
+            return False
+    return True
+
+
+# Write a function that takes the string and finds a repeating character in this string 
+
+def min_repeating_character_difference(s):
+    if not any(char for char in s if s.count(char) >= 2):
+        return None
+    seen = {}
+    min_diff = float('inf')
+    min_char = None
+
+    for indx, char in enumerate(s):
+        if char not in seen:
+            seen[char] = indx
+        else:
+            diff = indx - seen[char]
+            if diff < min_diff:
+                min_diff = diff
+                min_char = char
+            seen[char] = indx
+    return (min_diff, min_char)
+
+
+# Given a string s and a character c, return an array of integers representing the shortest distance from the current character in s to c.
+
+def shortest_to_char(s, c):
+    if not s:
+        return []
+    c_index = [i for i, char in enumerate(s) if char == c]
+    if not c_index:
+        return []
+    res = []
+    for i, char in enumerate(s):
+        number = min([abs(i-n) for n in c_index])
+        res.append(number)
+    return res
+
+
+
+
+
+
+
+
+
+
+
 
 
 
