@@ -693,5 +693,22 @@ def ipv4_address(address):
     return bool(re.fullmatch(r'^(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4][0-9]|1\d{2}|[1-9]?\d)$', address))
 
 
+# get the orders as a nice clean string with spaces and capitals like so:
+
+def get_order(order):
+    foods = ['burger', 'fries', 'chicken', 'pizza', 'sandwich', 'onionrings', 'milkshake', 'coke']
+    word = ''
+    res = []
+    for i in range(len(order)):
+        word += order[i]
+        if word in foods:
+            res.append(word.capitalize())
+            word = ''
+    return ' '.join(sorted(res, key=lambda x: foods.index(x.lower())))
+
+
+
+
+
 
 
