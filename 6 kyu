@@ -707,7 +707,49 @@ def get_order(order):
     return ' '.join(sorted(res, key=lambda x: foods.index(x.lower())))
 
 
+# Given 2 pairs of values each representing a road, construct an object whose turngreen method returns the name of the road with the most traffic at the moment of the method call, and clears that road from cars.
 
+class SmartTrafficLight:
+    def __init__(self, st1, st2):
+        self.st1 = st1
+        self.st2 = st2
+        
+    def turngreen(self):
+        if self.st1[0] == self.st2[0]:
+            return None
+        elif self.st1[0] > self.st2[0]:
+            self.st1[0] = 0
+            return self.st1[1]
+        elif self.st1[0] < self.st2[0]:
+            self.st2[0] = 0
+            return self.st2[1]
+
+
+# write a method isogram? that takes a string argument and returns true if the string has the properties of being an isogram and false otherwise.
+
+from collections import Counter
+
+def is_isogram(word):
+    if not word or not isinstance(word, str):
+        return False
+    word = ''.join(filter(str.isalpha, word.lower()))
+    counts = Counter(word)
+    if len(set(counts.values())) == 1:
+        return True
+    return False
+
+
+# Lets talk like a monkey.
+
+def monkey_talk(phrase):
+    phrase = phrase.split()
+    res = []
+    for word in phrase:
+        if word[0].lower() in 'aeiou':
+            res.append('eek')
+        else:
+            res.append('ook')
+    return ' '.join(res).capitalize() + '.'
 
 
 
